@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  active: false
+  price: 1
+  price_pay: 1
+  tracking_no: MyString
+  order_id: MyString
+  user_id: 
+
+two:
+  active: false
+  price: 1
+  price_pay: 1
+  tracking_no: MyString
+  order_id: MyString
+  user_id: 

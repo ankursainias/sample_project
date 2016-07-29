@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  addressable_type: MyString
+  addressable_id: 1
+  lat: 1
+  lng: 1
+  address: MyString
+
+two:
+  addressable_type: MyString
+  addressable_id: 1
+  lat: 1
+  lng: 1
+  address: MyString
