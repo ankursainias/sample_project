@@ -84,6 +84,7 @@ before_action :authenticate_api_user , except: [:sign_up,:sign_in]
 				end				
 			rescue Exception => @e
 				puts "error_exception #{Time.now} #{e.message}"
+				puts "error_exception #{Time.now} #{@e.message}"
 				render "api/v1/commons/error"
 			end
 
