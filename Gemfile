@@ -51,3 +51,7 @@ gem 'oj'
 gem 'rails_12factor', group: :production
 gem 'apipie-rails'
 gem 'carrierwave'
+
+
+gem 'rack-cors', :require => 'rack/cors'
+gem 'rails-api'
