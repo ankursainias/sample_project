@@ -26,11 +26,12 @@ before_action :verified_user  , except: [:sign_up,:sign_in, :update ,:check_otp,
 		def sign_in
 		  begin
 				user = User.find_by_email(params[:user][:email])
-				raise "phone_number_not_verified" unless user.verified
+
 				raise "Email not valid" if user.nil?
 				if user.valid_password?(params[:user][:password])
 					user.create_token if user.api_secret.blank?
 					@user=user
+					raise "phone_number_not_verified" unless @user.verified
 					@current_api_user=user
 					render :me
 				else 
