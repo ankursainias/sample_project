@@ -1,2 +1,2 @@
 collection @user
-attributes :id,:first_name,:last_name,:email,:phone_number,:image,:avg_rating,:api_secret
+attributes :id,:first_name,:last_name,:email,:phone_number,:image,:avg_rating,:api_secret,:city,:housne_no,:landmark,:street
