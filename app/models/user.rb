@@ -6,11 +6,11 @@ class User < ActiveRecord::Base
   has_many  :orders
   has_many :line_items, through: :orders
   mount_uploader :image, AvatarUploader
-  after_update :send_otp, if: :phone_number_changed?
+  after_update :send_otp
 
     def check_valid_otp(otp_re)
         if self.otp == otp_re
-          self.update_attributes(:verified=>true)
+          self.update_attributes(:ver)
         end
     end
 
@@ -31,10 +31,10 @@ class User < ActiveRecord::Base
   private
 
   def send_otp
-    puts "otp send"
-    # random_token = SecureRandom.hex(6)
+    puts  "send otprrrrr"
+    random_token = SecureRandom.hex(6)
     random_token = "123456"
-    self.update_attributes(:otp=> random_token,:verified=>false)
+    self.update_attributes(:otp=> random_token,:verified=>false)  if phone_number_changed? && otp.blank?
   end
 
 
