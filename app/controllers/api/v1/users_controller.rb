@@ -66,7 +66,7 @@ before_action :authenticate_api_user , except: [:sign_up,:sign_in]
 
 	private
 		def signup_params_customer
-			params.require(:user).permit(:devise_id,:devise_type,:phone_number,:role,:email,:password,:image,:first_name,:last_name)
+			params.require(:user).permit(:devise_id,:devise_type,:phone_number,:role,:email,:password,:image,:first_name,:last_name,:city,:housne_no,:landmark,:street)
 		end
 
 
