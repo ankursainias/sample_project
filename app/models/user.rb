@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
     def avg_rating
       return (1..5).to_a.sample
     end
-  private
+  
 
   def send_otp
     puts  "send otprrrrr"
