@@ -34,6 +34,8 @@ before_action :authenticate_api_user , except: [:sign_up,:sign_in]
 		def update
 			begin
 				@current_api_user.update_attributes(signup_params_customer)
+				@current_api_user.image_data_uri = params[:user][:image] if params[:user][:image].present? 
+				@current_api_user.save
 				@user=@current_api_user
 				render :me		
 			rescue Exception => e

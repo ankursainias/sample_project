@@ -55,3 +55,4 @@ gem 'carrierwave'
 
 gem 'rack-cors', :require => 'rack/cors'
 gem 'rails-api'
+gem 'carrierwave-data-uri'
