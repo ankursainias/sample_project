@@ -3,6 +3,8 @@ class Api::V1::ApplicationController < ActionController::API
 
 	skip_before_action :verify_authenticity_token
 	before_action :authenticate_api_user
+	before_action :verified_user 
+
 
 
 
@@ -20,6 +22,7 @@ class Api::V1::ApplicationController < ActionController::API
 
 	def authenticate_api_user
 		begin
+
 			@current_api_user=User.find_by_api_secret(request.headers["HTTP_APISECRET"])			
 			raise "user_not_found" if @current_api_user.nil?
 		rescue Exception => @e
@@ -27,10 +30,11 @@ class Api::V1::ApplicationController < ActionController::API
 		end
 	end
 
-
-
-
-
+	def verified_user
+		if @current_api_user.present?
+			raise "phone_number_not_verified" unless @current_api_user.verified
+		end
+	end
 end
 
 

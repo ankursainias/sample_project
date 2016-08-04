@@ -1,10 +1,32 @@
 class Api::V1::UsersController < Api::V1::ApplicationController
 before_action :sanitize_params , only: [:sign_up]
 before_action :authenticate_api_user , except: [:sign_up,:sign_in]
+before_action :verified_user  , except: [:sign_up,:sign_in, :update ,:check_otp,:send_otp]
+
+		def check_otp
+			begin
+				raise "wrong_otp" unless @current_api_user.check_valid_otp(params[:otp])
+				render :me
+				
+			rescue Exception => @e
+				render "api/v1/commons/error"	
+			end
+		end
+
+		def send_otp
+			begin
+				@current_api_user.send_otp				
+				render :me
+			rescue Exception => @e
+				render "api/v1/commons/error"				
+			end
+
+		end
 
 		def sign_in
 		  begin
 				user = User.find_by_email(params[:user][:email])
+				raise "phone_number_not_verified" unless user.verified
 				raise "Email not valid" if user.nil?
 				if user.valid_password?(params[:user][:password])
 					user.create_token if user.api_secret.blank?
@@ -36,6 +58,7 @@ before_action :authenticate_api_user , except: [:sign_up,:sign_in]
 				@current_api_user.update_attributes(signup_params_customer)
 				@current_api_user.image_data_uri = params[:user][:image] if params[:user][:image].present? 
 				@current_api_user.save
+				@current_api_user.reload
 				@user=@current_api_user
 				render :me		
 			rescue Exception => e
