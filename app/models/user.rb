@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 
     def check_valid_otp(otp_re)
         if self.otp == otp_re
-          self.update_attributes(:ver)
+          self.update_attributes(:verified=>true)
         end
     end
 
